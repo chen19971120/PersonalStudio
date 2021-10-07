@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>CFA102G1</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <resource-ref>
+		<description>DB Connection</description>
+		<res-ref-name>jdbc/CFA102G1</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+  
+  <!--   後臺登入濾器 -->
+
+  <filter>
+  	<filter-name>LoginFilter</filter-name>
+  	<filter-class>com.staff.controller.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>LoginFilter</filter-name>
+  	<url-pattern>/back_end/login/login_success.jsp</url-pattern>
+  	<url-pattern>/back_end/login/select_page.jsp</url-pattern>
+  	<url-pattern>/back_end/login/select_page_member.jsp</url-pattern>
+  	<url-pattern>/back_end/member/*</url-pattern>
+  	<url-pattern>/back_end/staff/*</url-pattern>
+  	<url-pattern>/back_end/appraisal_case/*</url-pattern>
+  	<url-pattern>/back_end/appraisal_case_images/*</url-pattern>
+  	<url-pattern>/back_end/appraisal_class/*</url-pattern>
+  	<url-pattern>/back_end/authority/*</url-pattern>
+  	<url-pattern>/back_end/consultation/addConsult.jsp</url-pattern>
+  	<url-pattern>/back_end/consultation/listAllConsult.jsp</url-pattern>
+  	<url-pattern>/back_end/consultation/listOneConsult.jsp</url-pattern>
+  	<url-pattern>/back_end/consultation/listOneConsultModel.jsp</url-pattern>
+  	<url-pattern>/back_end/consultation/select_page.jsp</url-pattern>
+  	<url-pattern>/back_end/consultation/update_consult_input.jsp</url-pattern>
+  	<url-pattern>/back_end/coupon_information/*</url-pattern>
+  	<url-pattern>/back_end/member/*</url-pattern>
+  	<url-pattern>/back_end/productReviews/*</url-pattern>
+  	<url-pattern>/back_end/rentalClass/*</url-pattern>
+  	<url-pattern>/back_end/rentalOrder/*</url-pattern>
+  	<url-pattern>/back_end/rentalProductImages/*</url-pattern>
+  	<url-pattern>/back_end/rentalProductList/*</url-pattern>
+  	<url-pattern>/back_end/reportProductReviews/*</url-pattern>
+  	<url-pattern>/back_end/secOrder/*</url-pattern>
+  	<url-pattern>/back_end/secProductClass/*</url-pattern>
+  	<url-pattern>/back_end/secProductImg/*</url-pattern>
+  	<url-pattern>/back_end/secProductInfo/*</url-pattern>
+  	<url-pattern>/back_end/staff_authority/*</url-pattern>
+  	<url-pattern>/back_end/store_information/*</url-pattern>
+  	<dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+    <dispatcher>ASYNC</dispatcher>
+  </filter-mapping>
+  
+  <!--   前台登入濾器 -->
+
+  <filter>
+  	<filter-name>MemberLoginFilter</filter-name>
+  	<filter-class>com.member.controller.MemberLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>MemberLoginFilter</filter-name>
+  	<url-pattern>/front_end/login/index.jsp</url-pattern>
+  	<url-pattern>/front_end/login/update_member.jsp</url-pattern>
+  	<url-pattern>/front_end/member/memberInfo.jsp</url-pattern>
+  	<url-pattern>/front_end/secOrder/checkOut.jsp</url-pattern>
+    <url-pattern>/front_end/secOrder/creditCardPay.jsp</url-pattern>
+    <url-pattern>/front_end/secOrder/MemberCentreSecOrder.jsp</url-pattern>
+    <url-pattern>/front_end/secOrder/transferPay.jsp</url-pattern>
+    <url-pattern>/front_end/appraisal_case/appraisalCase.jsp</url-pattern>
+    <url-pattern>/front_end/appraisal_case/memListA_Case.jsp</url-pattern>
+    <url-pattern>/front_end/rental/prolongRentalOrderCreate.jsp</url-pattern>
+    <url-pattern>/front_end/rental/rentalOrderCreate.jsp</url-pattern>
+    <url-pattern>/front_end/rental/rentalOrderList.jsp</url-pattern>
+    <url-pattern>/front_end/rental/reportProductReviewsPage.jsp</url-pattern>
+    <url-pattern>/front_end/rental/rentalProductReviewPage.jsp</url-pattern>
+  	<dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+    <dispatcher>ASYNC</dispatcher>
+  </filter-mapping>
+  
+  
+  
+  <servlet>
+    <servlet-name>SecProductInformServlet</servlet-name>
+    <servlet-class>com.sec_product_inform.controller.SecProductInformServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SecProductInformServlet</servlet-name>
+    <url-pattern>/secProductInfo/ProductInfo.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SecProductImagesServlet</servlet-name>
+    <servlet-class>com.sec_product_images.controller.SecProductImagesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SecProductImagesServlet</servlet-name>
+    <url-pattern>/secProductImg/ProductImg.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SecProductClassServlet</servlet-name>
+    <servlet-class>com.sec_product_class.controller.SecProductClassServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SecProductClassServlet</servlet-name>
+    <url-pattern>/secProductClass/ProductClass.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SecOrderServlet</servlet-name>
+    <servlet-class>com.sec_order.controller.SecOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SecOrderServlet</servlet-name>
+    <url-pattern>/secOrder/SecOrder.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SecOrderListServlet</servlet-name>
+    <servlet-class>com.sec_order_list.controller.SecOrderListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SecOrderListServlet</servlet-name>
+    <url-pattern>/secOrderList/SecOrderList.do</url-pattern>
+  </servlet-mapping>
+
+<!-- ******************** -->
+
+  <servlet>
+    <servlet-name>ReportProductReviewsServlet</servlet-name>
+    <servlet-class>com.reportProductReviews.controller.ReportProductReviewsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReportProductReviewsServlet</servlet-name>
+    <url-pattern>/back_end/rep/rep.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ProductReviewsServlet</servlet-name>
+    <servlet-class>com.productReviews.controller.ProductReviewsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductReviewsServlet</servlet-name>
+    <url-pattern>/back_end/pr/pr.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RentalOrderServlet</servlet-name>
+    <servlet-class>com.rentalOrder.controller.RentalOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RentalOrderServlet</servlet-name>
+    <url-pattern>/back_end/ro/ro.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RentalProductListServlet</servlet-name>
+    <servlet-class>com.rentalProductList.controller.RentalProductListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RentalProductListServlet</servlet-name>
+    <url-pattern>/back_end/rpl/rpl.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RentalProductImagesServlet</servlet-name>
+    <servlet-class>com.rentalProductImages.controller.RentalProductImagesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RentalProductImagesServlet</servlet-name>
+    <url-pattern>/back_end/rpi/rpi.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+		<servlet-name>DBGifReader</servlet-name>
+		<servlet-class>com.rentalProductImages.controller.DBGifReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBGifReader</servlet-name>
+		<url-pattern>/rpi/DBGifReader</url-pattern>
+	</servlet-mapping>
+  <servlet>
+  
+  <servlet-name>RentalClassServlet</servlet-name>
+    <servlet-class>com.rentalClass.controller.RentalClassServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RentalClassServlet</servlet-name>
+    <url-pattern>/back_end/rc/rc.do</url-pattern>
+  </servlet-mapping>   
+  
+<!-- ******************** -->
+
+  <servlet>
+    <servlet-name>MemberServlet</servlet-name>
+    <servlet-class>com.member.controller.MemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberServlet</servlet-name>
+    <url-pattern>/member/member.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>StaffServlet</servlet-name>
+    <servlet-class>com.staff.controller.StaffServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StaffServlet</servlet-name>
+    <url-pattern>/staff/staff.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Maintence_Case_ImgServlet</servlet-name>
+    <servlet-class>com.maintence_case_img.controller.Maintence_Case_ImgServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Maintence_Case_ImgServlet</servlet-name>
+    <url-pattern>/maintence_case_img/maintence_case_img.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AuthorityServlet</servlet-name>
+    <servlet-class>com.authority.controller.AuthorityServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AuthorityServlet</servlet-name>
+    <url-pattern>/authority/authority.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Staff_AuthorityServlet</servlet-name>
+    <servlet-class>com.staff_authority.controller.Staff_AuthorityServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Staff_AuthorityServlet</servlet-name>
+    <url-pattern>/staff_authority/staff_authority.do</url-pattern>
+  </servlet-mapping>
+  
+<!-- ******************** -->
+
+  <servlet>
+  <servlet-name>ConsultServlet</servlet-name>
+    <servlet-class>com.consultation.controller.ConsultServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConsultServlet</servlet-name>
+    <url-pattern>/back_end/consultation/consult.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SiServlet</servlet-name>
+    <servlet-class>com.store_information.controller.SiServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SiServlet</servlet-name>
+    <url-pattern>/back_end/store_information/si.do</url-pattern>
+  </servlet-mapping>
+  
+<!-- ******************** -->
+
+  <servlet>
+  	<servlet-name>Appraisal_Case_ImagesServlet</servlet-name>
+  	<servlet-class>com.appraisal_case_images.controller.Appraisal_Case_ImagesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Appraisal_Case_ImagesServlet</servlet-name>
+	<url-pattern>/back_end/appraisal_case_images/appraisal_case_images.do</url-pattern>  	
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Appraisal_ClassServlet</servlet-name>
+  	<servlet-class>com.appraisal_class.controller.Appraisal_ClassServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Appraisal_ClassServlet</servlet-name>
+	<url-pattern>/back_end/appraisal_class/appraisal_class.do</url-pattern>  	
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Appraisal_CaseServlet</servlet-name>
+  	<servlet-class>com.appraisal_case.controller.Appraisal_CaseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Appraisal_CaseServlet</servlet-name>
+	<url-pattern>/back_end/appraisal_case/appraisal_case.do</url-pattern>  	
+  </servlet-mapping>  
+ 
+  <servlet>
+  	<servlet-name>AppraisalCase_front</servlet-name>
+  	<servlet-class>com.appraisal_case.controller.AppraisalCase_front</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AppraisalCase_front</servlet-name>
+	<url-pattern>/front_end/appraisal_case/appraisal_case.do</url-pattern>  	
+  </servlet-mapping>  
+
+  <servlet>
+  	<servlet-name>Coupon_InformationServlet</servlet-name>
+  	<servlet-class>com.coupon_information.controller.Coupon_InformationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Coupon_InformationServlet</servlet-name>
+	<url-pattern>/back_end/coupon_information/coupon_information.do</url-pattern>  	
+  </servlet-mapping>  
+ 
+  <servlet>
+  	<servlet-name>Coupon_ListServlet</servlet-name>
+  	<servlet-class>com.coupon_list.controller.Coupon_ListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Coupon_ListServlet</servlet-name>
+	<url-pattern>/back_end/coupon_list/coupon_list.do</url-pattern>  	
+  </servlet-mapping>
+</web-app>
